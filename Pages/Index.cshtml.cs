@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
+using System.Web;
 using System.Runtime.InteropServices;
 
 namespace dotnetcoresample.Pages;
@@ -10,9 +11,9 @@ public class IndexModel : PageModel
 
     public string OSVersion { get { return RuntimeInformation.OSDescription; }  }
     
-    public string ClientCertificate { get { return _contextAccessor.HttpContext.Request.Headers["Client-Certificate"]; } }
+    public string ClientCertificate { get { return UrlDecode(_contextAccessor.HttpContext.Request.Headers["Client-Certificate"]); } }
     
-    public string ClientCertificateFingerprint { get { return "Fingerprint"; } }
+    public string ClientCertificateFingerprint { get { return UrlDecode(_contextAccessor.HttpContext.Request.Headers["Client-Certificate-Fingerprint"]); } }
     
     private readonly ILogger<IndexModel> _logger;
     
