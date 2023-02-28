@@ -11,9 +11,9 @@ public class IndexModel : PageModel
 
     public string OSVersion { get { return RuntimeInformation.OSDescription; }  }
     
-    public string ClientCertificate { get { return UrlDecode(_contextAccessor.HttpContext.Request.Headers["Client-Certificate"]); } }
+    public string ClientCertificate { get { return HttpUtility.UrlDecode(_contextAccessor.HttpContext.Request.Headers["Client-Certificate"]); } }
     
-    public string ClientCertificateFingerprint { get { return UrlDecode(_contextAccessor.HttpContext.Request.Headers["Client-Certificate-Fingerprint"]); } }
+    public string ClientCertificateFingerprint { get { return HttpUtility.UrlDecode(_contextAccessor.HttpContext.Request.Headers["Client-Certificate-Fingerprint"]); } }
     
     private readonly ILogger<IndexModel> _logger;
     
